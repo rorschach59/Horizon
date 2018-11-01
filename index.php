@@ -26,6 +26,7 @@ spl_autoload_register(function($class) {
     }
 });
 
+// Router
 $router = new AltoRouter();
 $router->setBasePath('');
 $router->addRoutes($routes);

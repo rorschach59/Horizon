@@ -25,36 +25,40 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($streamers as $key => $streamer) {
-            if($streamer['active'] == 0){
-                $warning = 'table-warning';
-                $activate = 'Activer';
-            } else {
-                $warning = '';
-                $activate = 'Désactiver';
-            }
+        <?php if(isset($streamers)) {
+            foreach ($streamers as $key => $streamer) {
         ?>
-        
-        <tr class="<?php echo $warning; ?>">
-            <th scope="row"><?php echo $streamer['id_streamer']; ?></th>
-            <td>
-                <input 
-                    type="text" 
-                    value="<?php echo $streamer['pseudo']; ?>" 
-                    name="<?php echo $streamer['pseudo']; ?>"
-                    class="form-control"
-                >
-            </td>
-            <td><?php echo $streamer['active']; ?></td>
-            <td><?php echo $streamer['date_creation']; ?></td>
-            <td><?php echo $streamer['date_update']; ?></td>
-            <td><?php echo $streamer['date_delete']; ?></td>
-            <form action="">
-            <td><?php echo $activate; ?></td>
-            <td>Modifier</td>
+            <form action="" method="POST">
+                <input type="hidden" value="<?php echo $streamer['id_streamer']; ?>" name="id_streamer">
+                <tr class="<?php echo $streamer['active'] == 0 ? 'table-warning' : ''; ?>">
+                    <th scope="row"><?php echo $streamer['id_streamer']; ?></th>
+                    <td>
+                        <input 
+                            type="text" 
+                            value="<?php echo $streamer['pseudo']; ?>" 
+                            name="pseudo"
+                            class="form-control"
+                        >
+                    </td>
+                    <td><?php echo $streamer['active']; ?></td>
+                    <td><?php echo $streamer['date_creation']; ?></td>
+                    <td><?php echo $streamer['date_update']; ?></td>
+                    <td><?php echo $streamer['date_delete']; ?></td>
+                    
+                        <td>
+                            <button type="submit" class="btn btn-default" name="delete" value="<?php echo $streamer['active'] == 0 ? '1' : '0'; ?>">
+                                <?php echo $streamer['active'] == 0 ? 'Activer' : 'Désactiver'; ?>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-default" name="update">
+                                Modifier
+                            </button>
+                        </td>
+                    
+                </tr>
             </form>
-        </tr>
-
-        <?php } ?>  
+        <?php }
+        } ?>  
     </tbody>
 </table>

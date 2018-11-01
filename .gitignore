@@ -1,2 +1,3 @@
 model/DatabaseModel.php
-sql/
+sql/*.sql
+error/*.log
