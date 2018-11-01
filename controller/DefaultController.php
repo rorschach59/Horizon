@@ -23,7 +23,7 @@ class DefaultController
 
         $flash_message = self::flashMessage();
 
-        $engine->addData( compact('flash_message') );
+        //$engine->addData( compact('flash_message') );
         // Add each datas to the view
         foreach($data as $key => $value) {
             $engine->addData( [ $key => $value ] );
@@ -31,6 +31,11 @@ class DefaultController
 
         // Delete the extension, not usefull but just in case
         $file = str_replace('.php', '', $file);
+        
+        // Write notification if exists
+        if(isset($flash_message)) {
+            echo $flash_message;
+        }
 
         // Render the template
         echo $engine->render('common/header', compact(''));
