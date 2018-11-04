@@ -28,7 +28,7 @@ class StreamerModel extends DatabaseModel
 
                 ErrorController::errorLog(self::$result->queryString);
                 ErrorController::errorLog(self::$result->errorInfo()[2]);
-                ErrorController::errorLog('StreamerModel.php, ligne '.__LINE__);
+                ErrorController::errorLog(get_called_class().'php, ligne '.__LINE__);
             }
         }
         
@@ -62,7 +62,7 @@ class StreamerModel extends DatabaseModel
 
                 ErrorController::errorLog(self::$result->queryString);
                 ErrorController::errorLog(self::$result->errorInfo()[2]);
-                ErrorController::errorLog('StreamerModel.php, ligne '.__LINE__);
+                ErrorController::errorLog(get_called_class().'.php, ligne '.__LINE__);
             }
         } else {
             echo ErrorController::flashMessage('danger', 'Le streamer demandé n\'existe pas');
@@ -105,7 +105,7 @@ class StreamerModel extends DatabaseModel
     
                     ErrorController::errorLog(self::$result->queryString);
                     ErrorController::errorLog(self::$result->errorInfo()[2]);
-                    ErrorController::errorLog('StreamerModel.php, ligne '.__LINE__);
+                    ErrorController::errorLog(get_called_class().'.php, ligne '.__LINE__);
     
                 }
             } else {

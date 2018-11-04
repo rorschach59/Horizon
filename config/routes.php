@@ -2,6 +2,9 @@
 
 $routes = 
     [
-        ['GET|POST', '/horizon/', 'HomeController::home', 'home'],
-        ['GET|POST', '/horizon/addStreamer/', 'StreamerController::home', 'homeStreamer'],
+        ['GET|POST', '/', 'HomeController::home', 'home'],
+        ['GET|POST', '/ajoutStreamer/', 'StreamerController::home', 'homeStreamer'],
+        ['GET|POST', '/inscription/', 'UserController::subscribe', 'userSubscribe'],
+        ['GET|POST', '/connexion/', 'UserController::loginUser', 'userLogin'],
+        ['GET|POST', '/deconnexion/', 'UserController::logout', 'userLogout'],
     ];
