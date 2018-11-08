@@ -5,12 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/css/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/public/css/lib/fullcalendar.min.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="/public/css/lib/fullcalendar.print.min.css" />
+    <link rel="stylesheet" type="text/css" media="print" href="/public/css/lib/fullcalendar.print.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/public/css/lib/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/public/css/lib/bootstrap-grid.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/public/css/lib/bootstrap-reboot.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/sketchy/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/css/lib/bootstrap-sketchy.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/sketchy/bootstrap.min.css"/> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatica+SC" rel="stylesheet">

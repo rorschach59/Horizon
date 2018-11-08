@@ -11,6 +11,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script> 
 
         <script src="/public/js/lib/jquery-ui.min.js"></script>
+        <script src="/public/js/lib/jquery.ui.touch-punch.min.js"></script>
         <script src="/public/js/lib/moment.min.js"></script>
         <script src="/public/js/lib/bootstrap.bundle.min.js"></script>
         <script src="/public/js/lib/bootstrap.min.js"></script>
@@ -19,6 +20,5 @@
         <script src="/public/js/lib/gcal.min.js"></script>
         <script src="/public/js/lib/locale/fr.js"></script>
         
-
     </body>
 </html>

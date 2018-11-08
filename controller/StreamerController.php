@@ -68,4 +68,41 @@ class StreamerController extends DefaultController
             }
         }
     }
+    
+    public static function addPlanning()
+    {
+
+        if(isset($_POST['addProg']) && !empty($_POST['addProg'])) {            
+            $params['id_streamer'] = 1; //$_SESSION['userId'];
+            $params['uid'] = $_POST['uid'];
+            $params['event_id'] = $_POST['event_id'];
+            $params['title'] = $_POST['title'];
+            $params['streamBeginning'] = date('Y-m-d H:i:s', strtotime($_POST['start'] . '-1 hour'));
+            $params['streamFinishing'] = date('Y-m-d H:i:s', strtotime($_POST['end'] . '-1 hour'));
+            $params['active'] = 1;
+            
+            if(!StreamerModel::insertPlanningStreamer($params)){
+                return false;
+            }
+        }
+
+        if(isset($_POST['addGame']) && !empty($_POST['addGame'])) {
+            $params['game_title'] = $_POST['game_title'];
+            StreamerModel::insertGame($params);
+        }
+
+        if(isset($_POST['deleteProg']) && !empty($_POST['deleteProg'])) {
+            $params['id_streamer'] = 1; //$_SESSION['userId'];
+            $params['uid'] = $_POST['uid'];
+            $params['event_id'] = $_POST['event_id'];
+            $params['title'] = $_POST['title'];
+            $params['active'] = 0;
+
+            StreamerModel::deletePlanningStreamer($params);
+        }
+
+        $games = DatabaseModel::select('SELECT title FROM games');
+        
+        DefaultController::show('BO/addPlanning', compact('games'));
+    }
 }

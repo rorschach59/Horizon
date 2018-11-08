@@ -4,7 +4,7 @@ class ErrorController
 {
     public static function errorLog($error)
     {   
-        $file_error = $_SERVER['DOCUMENT_ROOT'].'/horizon/error/error_'.date('Y-m-d').'.log';
+        $file_error = $_SERVER['DOCUMENT_ROOT'].'/error/error_'.date('Y-m-d').'.log';
         $file = fopen($file_error, 'a+');
         fwrite($file, date('Y-m-d H:i:s').' : '.$error.PHP_EOL);
         fclose($file);
