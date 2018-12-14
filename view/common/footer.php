@@ -19,6 +19,18 @@
         <script src="/public/js/lib/theme-chooser.js"></script>
         <script src="/public/js/lib/gcal.min.js"></script>
         <script src="/public/js/lib/locale/fr.js"></script>
+        <script src="/public/js/lib/bootstrap-select.min.js"></script>
+
+        <script>
+        
+            $(document).ready(function() {
+                $('.selectpicker').on('change', function(){
+                    // traitement ajax
+                    // console.log(this.value);
+                });
+            });
+
+        </script>
         
     </body>
 </html>

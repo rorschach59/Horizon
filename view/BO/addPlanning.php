@@ -1,19 +1,23 @@
 <br/>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm-2 col-xs-2">
+        <div class="col-md-3">
+            <?php //echo $sidebar->showSidebar(); ?>
+        </div>
+        <div class="col-md-7 col-sm-7 col-xs-7">
+            <div id="calendar"></div>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2">
             <div id='wrap'>
                 <div id='external-events'>
                     <h4>Jeux possibles</h4>
                     <?php foreach ($games as $game) {
+                        
                         echo '<div class="fc-event">'.$game['title'].'</div>';
                     
                      }?>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-10 col-xs-10">
-            <div id="calendar"></div>
         </div>
     </div>
 </div>

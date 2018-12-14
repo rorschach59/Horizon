@@ -266,5 +266,51 @@ class StreamerModel extends DatabaseModel
             }            
         }
     }
+
+    public static function getProg($params)
+    {
+        self::$db = DatabaseModel::getDatabase();
+
+        $events = DatabaseModel::select(
+            'SELECT title, streamBeginning as start, streamFinishing as end
+            FROM streamers_prog
+            WHERE id_streamer = "'.$params['id_streamer'].'"
+            AND streamBeginning BETWEEN "'.$params['beginWeek'].'" AND "'.$params['finishWeek'].'"
+            AND active = 1
+            ORDER BY streamBeginning ASC' 
+        );
+
+        $firstHour = DatabaseModel::select(
+            'SELECT DATE_FORMAT(streamBeginning, "%H:%i:%s") as firstHour
+            FROM streamers_prog
+            WHERE id_streamer = "'.$params['id_streamer'].'"
+            AND streamBeginning BETWEEN "'.$params['beginWeek'].'" AND "'.$params['finishWeek'].'"
+            AND active = 1
+            ORDER BY firstHour ASC
+            LIMIT 1' 
+        );
+
+        $lastHour = DatabaseModel::select(
+            'SELECT DATE_FORMAT(streamFinishing, "%H:%i:%s") as lastHour
+            FROM streamers_prog
+            WHERE id_streamer = "'.$params['id_streamer'].'"
+            AND streamFinishing BETWEEN "'.$params['beginWeek'].'" AND "'.$params['finishWeek'].'"
+            AND active = 1
+            ORDER BY lastHour DESC
+            LIMIT 1' 
+        );
+
+        $data['events'] = $events;
+        $data['firstHour'] = date('H:i:s', strtotime( current($firstHour)['firstHour'] . '-1 hours'));
+        $data['lastHour'] = date('H:i:s', strtotime( current($lastHour)['lastHour'] . '+1 hours'));
+
+        // A voir pour la hauteur auto du planning
+        // $datetime1 = new DateTime($data['firstHour']);
+        // $datetime2 = new DateTime($data['lastHour']);
+        // $interval = $datetime1->diff($datetime2);
+        // $data['interval'] = $interval->format('%H');
+        
+        return $data;
+    }
     
 }

@@ -1,0 +1,15 @@
+#sidebar {
+  margin-top: 5%;
+  padding: 5%;
+  border: 2px solid black;
+  border-radius: 25px 25px 55px 5px/5px 55px 25px 25px;
+}
+
+#sidebar h3 {
+  text-decoration: underline;
+}
+
+#sidebar .bootstrap-select {
+  width: 341px !important;
+}
+/*# sourceMappingURL=sidebar.css.map */

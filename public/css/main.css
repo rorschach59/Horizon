@@ -1,3 +1,6 @@
+@import 'subscribe.css';
+@import 'sidebar.css';
+
 .removebtn {
     color:black;
     position: absolute;

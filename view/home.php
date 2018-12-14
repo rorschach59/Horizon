@@ -1,6 +1,11 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div id="calendar"></div>
+        <div class="col-md-3">
+            <?php echo $sidebar->showSidebar(); ?>
+        </div>
+        <div class="col-md-8">
+            <div id="calendar"></div>
+        </div>
     </div>
 </div>
 
@@ -18,53 +23,28 @@
                 right: 'agendaWeek,listWeek'//basicWeek
             },
             duration: { days: 4 , hours:23, minutes:59 }, // an object
-            minTime:'10:00:00',
-            maxTime:'24:00:05',
+            minTime: "<?php echo $data['firstHour']; ?>",
+            maxTime: "<?php echo $data['lastHour']; ?>",
             //hauteur générale
-            // height: 100,
+            height: 600,
             // hauteur du contenu
             // contentHeight: auto,
-            defaultDate: '2018-10-24',
+            //defaultDate: '2018-10-24',
             formatRange : 'LTS',
             nowIndicator : true,
             navLinks: true, // can click day/week names to navigate views
-            editable: true,
+            //editable: true,
             eventLimit: true, // allow "more" link when too many events
             events: [
-                {
-                title: 'PUBG',
-                start: '2018-10-24T14:00:00',
-                end: '2018-10-24T16:30:00'
-                },
-                {
-                title: 'SCUM',
-                start: '2018-10-26T10:00:00',
-                end: '2018-10-26T13:00:00'
-                },
-                {
-                title: 'Worlds League of Legends',
-                start: '2018-10-28T08:30:00',
-                end: '2018-10-28T14:00:00'
-                },
-                {
-                title: 'Click for Google',
-                url: 'http://google.com/',
-                start: '2018-03-28'
-                }
+                <?php foreach ($data['events'] as $key => $event) {
+                    echo '{';
+                    echo '"title": "'.$event['title'].'",';
+                    echo '"start": "'.$event['start'].'",';
+                    echo '"end": "'.$event['end'].'"';
+                    echo '},';
+                } ?>            
             ]
         });
-            
-            /*
-            $('#calendar').fullCalendar({
-                defaultView: 'basicWeek',
-                header: {
-                    left: 'prev,next',
-                    center: 'title',
-                    right: 'basicDay,basicWeek'
-                },
-                events: 'https://fullcalendar.io/demo-events.json'
-            });
-            */
     });
 
 

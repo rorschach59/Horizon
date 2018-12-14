@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <?php $conf = DatabaseModel::getConf(); ?>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $conf['gtag_id']; ?>"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '<?php echo $conf['gtag_id']; ?>');
+</script>
+
+
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
@@ -12,14 +24,15 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/public/css/lib/bootstrap-grid.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/public/css/lib/bootstrap-reboot.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/public/css/lib/bootstrap-sketchy.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/public/css/lib/bootstrap-select.min.css" />
     <!-- <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/sketchy/bootstrap.min.css"/> -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatica+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Anton' rel='stylesheet'>
+    <link href='http://fonts.googleapis.com/css?family=Anton' rel='stylesheet'> -->
     <script src="/public/js/lib/jquery.min.js"></script>
 
     <title>Horizon</title>
@@ -28,38 +41,59 @@
 
     <!-- Header -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light d-none d-sm-flex">
+            <a class="navbar-brand" href="/"><img width="150px" src="/public/img/logo_transparent_background.png" alt="Horizon"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                </ul>
+                <span class="navbar-text">
+                <?php if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) { ?>
+                    <a href="#">Gestion du compte</a>
+                    <a href="/deconnexion/">Se déconnecter</a>
+                <?php } else { ?>
+                    <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg">Connexion</a>
+                    <a href="/inscription/">Inscription</a>
+                <?php } ?>
+                </span>
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light d-sm-none">
             <a class="navbar-brand" href="/"><img width="150px" src="/public/img/logo_transparent_background.png" alt="Horizon"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="nav justify-content-end list-unstyled navbar-text">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Mon compte
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <?php if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) { ?>
+                
+            <?php if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) { ?>
 
-                            <a class="dropdown-item" href="#">Gestion du compte</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/deconnexion/">Se déconnecter</a>
+                <a class="dropdown-item" href="#">Gestion du compte</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/deconnexion/">Se déconnecter</a>
 
-                        <?php } else { ?>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target=".bd-example-modal-lg">Connexion</a>
-                            <a class="dropdown-item" href="/inscription/">Inscription</a>
-                            <!-- <a class="dropdown-item" href="#">Gestion du compte</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Se déconnecter</a> -->
+                <?php } else { ?>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target=".bd-example-modal-lg">Connexion</a>
+                <a class="dropdown-item" href="/inscription/">Inscription</a>
+                <!-- <a class="dropdown-item" href="#">Gestion du compte</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Se déconnecter</a> -->
 
-                        <?php } ?>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            
+            <?php } ?>
+                </div>
+            </ul> 
         </nav>
 
         <div id="modalLogin" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

@@ -105,4 +105,5 @@ class StreamerController extends DefaultController
         
         DefaultController::show('BO/addPlanning', compact('games'));
     }
+
 }

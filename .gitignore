@@ -1,3 +1,4 @@
 model/DatabaseModel.php
 sql/*.sql
 error/*.log
+sftp.json
